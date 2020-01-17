@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    background: rgba(110, 147, 247, 0.212);
+}
+
+button {
+    width: 300px;
+    height: 60px;
+    border-radius: 10px;
+    display: grid;
+    grid-column: 1/ -1;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+}
+
+.start-btn {
+    display: grid;
+    grid-column: 1/ -1;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: #f03506;
+    font-weight: normal;
+    text-align: center;
+    font-size: 5em;
+}
+
+.game-info-container {
+    grid-column: 1 / -1
+}
+
+.game-info {
+    color: #f03506;
+    font-weight: normal;
+    text-align: center;
+    font-size: 3em;
+}
+
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    margin: 50px;
+    justify-content: center;
+    perspective: 500px;
+}
+
+.card {
+    position: relative;
+    width: 150px;
+    height: 200px;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    border-width: 4px;
+    border-style: solid;
+    transition: transform 500ms ease-in-out;
+}
+
+.card-back {
+    background-color: rgba(110, 147, 247, 0.212);
+    border-color: white;
+}
+
+.card-front {
+    transform: rotateY(180deg);
+    background-color: rgba(110, 147, 247, 0.212);
+    border-color: white;
+}
+
+.card-value {
+    transition: transform 100ms ease-in-out;
+    transform: scale(.9);
+}
+
+.card-front:hover .card-value {
+    transform: scale(1);
+}
+
+.card.visible .card-back{
+    transform: rotateY(-180deg);
+}
+
+.card.visible .card-front {
+    transform: rotateY(0);
+}
+
+.start {
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    background-color: rgb(30, 144, 255, 0.45);
+}
+
+.leaf {
+    align-self: flex-start;
+    transform: scale(.9);
+    height: 100%;
+    width: 100%;
+    transition: transform 100ms ease-in-out;
+}
+
+.card.matched .card-value {
+    animation: dance 1s linear infinite 500ms;
+  }
+
+.card-back:hover .leaf {
+    transform: scale(1);
+}
+
+.card-value {
+    align-self: flex;
+    height: 100%;
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        grid-template-columns: repeat(3, auto);
+    }
+
+    .game-info-container {
+        flex-direction: columns;
+        align-items: center;
+    }
+}
+
+@keyframes dance {
+    0%, 100%  {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(-30deg);
+    }
+    75% {
+      transform: rotate(30deg);
+    }
+  }
